@@ -11,6 +11,6 @@ int main(){
         printf("Número registrado!\n");
         soma += opcao;
     }
-    printf("O maior numero foi: %d", soma);
+    printf("A soma da lista foi: %d", soma);
     return 0;
 }
