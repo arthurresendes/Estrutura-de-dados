@@ -14,4 +14,5 @@ int main(){
         printf("Número registrado!");
     }
     printf("O maior numero foi: %d", maior);
+    return 0;
 }

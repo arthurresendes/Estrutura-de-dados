@@ -19,4 +19,5 @@ int main(){
         printf("Aluno %d : %s , nota : %.2f\n" , j + 1 , nome[j] , nota[j]);
         j++;
     }
+    return 0;
 }

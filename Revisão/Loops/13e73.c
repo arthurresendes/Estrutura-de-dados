@@ -7,4 +7,5 @@ int main(){
     }
     media = soma / 60;
     printf("A soam dos numeros foi de %d e sua media eh : %d" , soma,media);
+    return 0;
 }

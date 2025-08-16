@@ -15,4 +15,5 @@ int main(){
     for (int i = 0; i<10 ; i++){
         printf("Aluno %d : %s , nota : %.2f\n" , i + 1 , nome[i] , nota[i]);
     }
+    return 0;
 }
