@@ -13,5 +13,7 @@ int main(){
     for(int i = 0; i < 10;i++){
         printf("%d\n", p[i]);
     }
+
+    free(p);
     return 0;
 }
