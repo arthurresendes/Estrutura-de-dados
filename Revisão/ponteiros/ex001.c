@@ -5,4 +5,5 @@ int main(){
     int *p;
     p = vet;
     printf("%d", *(p+1));
+    return 0;
 }
