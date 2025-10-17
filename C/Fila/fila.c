@@ -7,7 +7,7 @@ typedef struct No{
 }NO;
 
 typedef struct FILA{
-    NO* inicio;
+    NO *inicio;
     NO *fim;
 }FILA;
 
