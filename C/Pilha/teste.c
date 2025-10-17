@@ -1,52 +1,82 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct pilha{
-    int valor;
+    int dado;
     struct pilha *prox;
 }Pilha;
 
 Pilha *topo = NULL;
 
-void push(int numero){
+void pop();
+void push(int valor);
+void listagem();
+
+int main(){
+    int opcao = 0,n;
+    do
+    {
+        printf("\n=====Menu====\n");
+        printf("1-Listagem\n");
+        printf("2-Inserindo\n");
+        printf("3-Excluindo\n");
+        printf("0-Saindo\n");
+        printf(":");
+        scanf("%d", &opcao);
+        switch (opcao)
+        {
+        case 1:
+            listagem();
+            break;
+        case 2:
+            printf("Digite um valor numerio inteiro: ");
+            scanf("%d", &n);
+            push(n);
+            break;
+        case 3:
+            pop();
+            break;
+        case 0:
+            printf("Saindo... \n");
+            return 0;
+        default:
+            printf("Numero invalido\n");
+            break;
+        }
+    } while (opcao != 0);
+    return 0;
+}
+
+
+void push(int valor){
     Pilha *novo = malloc(sizeof(Pilha));
-    novo->valor = numero;
+    novo->dado = valor;
     novo->prox = topo;
     topo = novo;
-    printf("Valor inserido!!\n");
+    printf("Valor adicionado: %d", valor);
 }
 
 void pop(){
     if(topo == NULL){
         printf("Pilha vazia");
     }else{
-        Pilha *temp;
-        temp = topo;
+        Pilha *temporaria;
+        temporaria = topo;
         topo = topo->prox;
-        printf("Desimpilhando!!\n");
-        free(temp);
+        printf("\nDesempilhando %d", temporaria->dado);
+        free(temporaria);
     }
 }
 
 void listagem(){
-    Pilha *atual = topo;
-    while (atual != NULL){
-        printf("Valor: %d\n" , atual->valor);
-        atual = atual->prox;
+    if(topo == NULL){
+        printf("Pilha vazia!!");
+    }else{
+        Pilha *atual;
+        atual = topo;
+        while (atual != NULL){
+            printf("%d\n", atual->dado);
+            atual = atual->prox;
+        }
     }
-}
-
-int main()
-{
-    push(1);
-    push(2);
-    push(3);
-    push(4);
-    push(5);
-    listagem();
-    pop();
-    listagem();
-    pop();
-    listagem();
-    return 0;
 }
