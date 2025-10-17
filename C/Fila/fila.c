@@ -21,8 +21,41 @@ void enfilerar(int dado , FILA * f){
         ptr->prox = NULL;
         if(f->inicio == NULL){
             f->inicio = ptr;
+        }else{
+            f->fim->prox = ptr;
         }
 
         f->fim = ptr;
+    }
+}
+
+void desenfilera(FILA *f){
+    NO *ptr = f->inicio;
+    int dado;
+    if(ptr != NULL){
+        printf("%d\n", ptr->dado);
+        f->inicio = ptr->prox;
+        ptr->prox = NULL;
+        dado = ptr->dado;
+        free(ptr);
+        if(f->inicio == NULL){
+            f->fim = NULL;
+        }
+    }else{
+        printf("Sem dados na fila!!\n");
+        return;
+    }
+}
+
+void imprime_fila(FILA *f){
+    NO *ptr = f->inicio;
+    if(ptr == NULL){
+        printf("Sem dados na fila!!");
+        return;
+    }else{
+        while(ptr != NULL){
+            printf("%d\n", ptr->dado);
+            ptr = ptr->prox;
+        }
     }
 }
