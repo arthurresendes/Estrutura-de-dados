@@ -1,27 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct No{
+typedef struct No
+{
     int dado;
     struct No *prox;
-}NO;
+} NO;
 
-typedef struct FILA{
+typedef struct FILA
+{
     NO *inicio;
     NO *fim;
-}FILA;
+} FILA;
 
-void enfilerar(int dado , FILA * f){
-    NO *ptr = (NO*)malloc(sizeof(NO));
-    if(ptr == NULL){
+void enfilerar(int dado, FILA *f)
+{
+    NO *ptr = (NO *)malloc(sizeof(NO));
+    if (ptr == NULL)
+    {
         printf("Erro na alocação!!\n");
         return;
-    }else{
+    }
+    else
+    {
         ptr->dado = dado;
         ptr->prox = NULL;
-        if(f->inicio == NULL){
+        if (f->inicio == NULL)
+        {
             f->inicio = ptr;
-        }else{
+        }
+        else
+        {
             f->fim->prox = ptr;
         }
 
@@ -29,33 +38,79 @@ void enfilerar(int dado , FILA * f){
     }
 }
 
-void desenfilera(FILA *f){
+void desenfilera(FILA *f)
+{
     NO *ptr = f->inicio;
-    int dado;
-    if(ptr != NULL){
-        printf("%d\n", ptr->dado);
+    if (ptr != NULL)
+    {
+        printf("Elemento desenfileirado: %d\n", ptr->dado);
         f->inicio = ptr->prox;
-        ptr->prox = NULL;
-        dado = ptr->dado;
         free(ptr);
-        if(f->inicio == NULL){
+        if (f->inicio == NULL)
+        {
             f->fim = NULL;
         }
-    }else{
+    }
+    else
+    {
         printf("Sem dados na fila!!\n");
         return;
     }
 }
 
-void imprime_fila(FILA *f){
+
+void imprime_fila(FILA *f)
+{
     NO *ptr = f->inicio;
-    if(ptr == NULL){
+    if (ptr == NULL)
+    {
         printf("Sem dados na fila!!");
         return;
-    }else{
-        while(ptr != NULL){
+    }
+    else
+    {
+        while (ptr != NULL)
+        {
             printf("%d\n", ptr->dado);
             ptr = ptr->prox;
         }
     }
+}
+
+int main()
+{
+    FILA f;
+    int opcao;
+    int valor;
+    do
+    {
+        printf("1- Inserir\n");
+        printf("2- Desinfileirar\n");
+        printf("3- Imprimir fila\n");
+        printf("0 - Sair\n");
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            printf("Digite um valor inteiro: ");
+            scanf("%d", &valor);
+            enfilerar(valor, &f);
+            break;
+        case 2:
+            desenfilera(&f);
+            break;
+        case 3:
+            imprime_fila(&f);
+            break;
+        
+        case 0:
+            printf("Saindo... \n");
+            return 0;
+        default:
+            printf("Opcao invalida!!");
+        }
+    } while (opcao != 0);
+
+    return 0;
 }
