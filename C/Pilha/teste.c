@@ -47,7 +47,6 @@ int main(){
     return 0;
 }
 
-
 void push(int valor){
     Pilha *novo = malloc(sizeof(Pilha));
     novo->dado = valor;
