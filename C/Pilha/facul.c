@@ -87,6 +87,16 @@ void libera(Pilha *p) {
     p->tam = 0;
 }
 
+int ver_topo(Pilha *p){
+    if(p->topo == NULL){
+        printf("Pilha vazia.\n");
+        return -1;
+    }else{
+        printf("Valor do topo: %d", p->topo->num);
+    }
+}
+
+
 
 int main(void) {
     Pilha p;
