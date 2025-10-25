@@ -17,12 +17,8 @@ void inicializa(Pilha *p){
     p->tam = 0;
 };
 
-void vazia(Pilha *p){
-    if (p->topo == NULL){
-        printf("Pilha vazia!!");
-    }else{
-        printf("Pilha não esta vazia");
-    }
+int vazia(Pilha *p){
+    return p->topo == NULL;
 }
 
 void push(Pilha *p, int valor){
@@ -40,7 +36,7 @@ void push(Pilha *p, int valor){
     printf("Elemento %d empilhado com sucesso!\n", valor);
 }
 
-void pop(Pilha *p){
+int pop(Pilha *p){
     if (p->topo == NULL) {
         printf("Pilha vazia, nada para remover.\n");
         return -1;
@@ -53,6 +49,7 @@ void pop(Pilha *p){
     p->tam--;
 
     printf("Elemento %d removido do topo.\n", valor);
+    return valor; 
 }
 
 
@@ -93,6 +90,7 @@ int ver_topo(Pilha *p){
         return -1;
     }else{
         printf("Valor do topo: %d", p->topo->num);
+        return p->topo->num;
     }
 }
 
@@ -102,25 +100,34 @@ int count_elementos_pilha(Pilha *p){
 
 int soma(Pilha *p){
     int soma = 0;
-    for(int i = 0; i < p->tam; i++){
-        soma+=i;
+    Node *aux = p->topo;
+
+    while(aux != NULL){
+        soma+= aux->num;
+        aux = aux->prox;
     }
 
     return soma;
 }
 
 int maior(Pilha *p){
+    if (p->topo == NULL) return 0;
     int maior = 0;
-    for(int i = 0; i < p->tam; i++){
-        if(maior < i){
-            maior = i;
+    Node *aux = p->topo;
+
+    while(aux != NULL){
+        if(aux->num > maior){
+            maior = aux->num;
         }
+        aux = aux->prox;
     }
+
+    return maior;
 }
 
 int main(void) {
     Pilha p;
-    inicia(&p);  // Inicializa a pilha
+    inicializa(&p);  // Inicializa a pilha
 
     int opcao, valor;
 
@@ -155,16 +162,16 @@ int main(void) {
             printf("Pilha zerada!\n");
         }
         else if (opcao == 5) {
-            printf(ver_topo(&p));
+            ver_topo(&p);
         }
         else if (opcao == 6) {
-            printf(count_elementos_pilha(&p));
+            printf("Quantidade de elementos: %d\n", count_elementos_pilha(&p));
         }
         else if (opcao == 7) {
-            printf(soma(&p));
+            printf("Soma dos elementos: %d\n", soma(&p));
         }
         else if (opcao == 8) {
-            printf(maior(&p));
+            printf("Maior elemento: %d\n", maior(&p));
         }
         else if (opcao == 0) {
             printf("Encerrando programa...\n");
@@ -172,6 +179,7 @@ int main(void) {
         else {
             printf("Opcao invalida!\n");
         }
+
 
     } while (opcao != 0);
 
