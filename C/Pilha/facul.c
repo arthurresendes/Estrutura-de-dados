@@ -58,7 +58,6 @@ void exibe(Pilha *p) {
         printf("Pilha vazia.\n");
         return;
     }
-
     Node *aux = p->topo;
     printf("\n--- PILHA (do topo para base) ---\n");
     int pos = p->tam;
@@ -189,10 +188,10 @@ int main(void) {
             printf("Soma dos elementos: %d\n", soma(&p));
         }
         else if (opcao == 8) {
-            printf("Maior elemento: %d\n", maior(&p));
+            printf("Maior elemento da pilha: %d\n", maior(&p));
         }
         else if (opcao == 9) {
-            printf("Menor elemento: %d\n", menor(&p));
+            printf("Menor elemento da pilha: %d\n", menor(&p));
         }
         else if (opcao == 0) {
             printf("Encerrando programa...\n");
