@@ -109,7 +109,14 @@ int soma(Pilha *p){
     return soma;
 }
 
-
+int maior(Pilha *p){
+    int maior = 0;
+    for(int i = 0; i < p->tam; i++){
+        if(maior < i){
+            maior = i;
+        }
+    }
+}
 
 int main(void) {
     Pilha p;
@@ -123,6 +130,10 @@ int main(void) {
         printf("2 - Desempilhar (POP)\n");
         printf("3 - Exibir pilha\n");
         printf("4 - Zerar pilha\n");
+        printf("5 - Ver topo da pilha\n");
+        printf("6 - Quantos elementos na pilha\n");
+        printf("7 - Soma dos elementos da pilha\n");
+        printf("8 - Maior número da pilha\n");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -143,6 +154,18 @@ int main(void) {
             libera(&p);
             printf("Pilha zerada!\n");
         }
+        else if (opcao == 5) {
+            printf(ver_topo(&p));
+        }
+        else if (opcao == 6) {
+            printf(count_elementos_pilha(&p));
+        }
+        else if (opcao == 7) {
+            printf(soma(&p));
+        }
+        else if (opcao == 8) {
+            printf(maior(&p));
+        }
         else if (opcao == 0) {
             printf("Encerrando programa...\n");
         }
@@ -152,7 +175,6 @@ int main(void) {
 
     } while (opcao != 0);
 
-    // Libera memória antes de sair
     libera(&p);
     return 0;
 }
