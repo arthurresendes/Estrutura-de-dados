@@ -112,7 +112,7 @@ int soma(Pilha *p){
 
 int maior(Pilha *p){
     if (p->topo == NULL) return 0;
-    int maior = 0;
+    int maior = p->topo->num;
     Node *aux = p->topo;
 
     while(aux != NULL){
@@ -124,6 +124,23 @@ int maior(Pilha *p){
 
     return maior;
 }
+
+int menor(Pilha *p){
+    if (p->topo == NULL) return 0;
+    int menor = p->topo->num;
+    Node *aux = p->topo;
+
+    while(aux != NULL){
+        if(aux->num < menor){
+            menor = aux->num;
+        }
+        aux = aux->prox;
+    }
+
+    return menor;
+}
+
+
 
 int main(void) {
     Pilha p;
@@ -141,6 +158,7 @@ int main(void) {
         printf("6 - Quantos elementos na pilha\n");
         printf("7 - Soma dos elementos da pilha\n");
         printf("8 - Maior número da pilha\n");
+        printf("9 - Menor número da pilha\n");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -172,6 +190,9 @@ int main(void) {
         }
         else if (opcao == 8) {
             printf("Maior elemento: %d\n", maior(&p));
+        }
+        else if (opcao == 9) {
+            printf("Menor elemento: %d\n", menor(&p));
         }
         else if (opcao == 0) {
             printf("Encerrando programa...\n");
