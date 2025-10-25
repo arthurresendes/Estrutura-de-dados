@@ -96,6 +96,19 @@ int ver_topo(Pilha *p){
     }
 }
 
+int count_elementos_pilha(Pilha *p){
+    return p->tam;
+}
+
+int soma(Pilha *p){
+    int soma = 0;
+    for(int i = 0; i < p->tam; i++){
+        soma+=i;
+    }
+
+    return soma;
+}
+
 
 
 int main(void) {
