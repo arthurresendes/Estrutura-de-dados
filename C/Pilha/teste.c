@@ -67,7 +67,23 @@ void exibe(Pilha *p){
             printf("[%d] -> %d\n", pos, aux->valor);
             aux = aux->prox;
         }
+        printf("-------------------------------\n\n");
     }
+}
+
+
+void libera(Pilha *p) {
+    Node *atual = p->topo;
+    Node *proxNode;
+
+    while (atual != NULL) {
+        proxNode = atual->prox;
+        free(atual);
+        atual = proxNode;
+    }
+
+    p->topo = NULL;
+    p->tam = 0;
 }
 
 int main(void)
