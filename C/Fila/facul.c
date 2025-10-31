@@ -104,6 +104,70 @@ void libera(Fila *f){
     f->tam = 0;
 }
 
+int ver_inicio(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        return -1;
+    }
+
+    return f->inicio->valor;
+}
+
+int ver_fim(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        return -1;
+    }
+
+    return f->fim->valor;
+}
+
+int count_elementos(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        return -1;
+    }
+
+    return f->tam;
+}
+
+int soma_elementos(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        return -1;
+    }
+
+    int soma = 0;
+    Node *aux = f->inicio;
+    while(aux != NULL){
+        soma += aux->valor;
+        aux = aux->prox;
+    }
+
+    return soma;
+}
+
+
+
+int maior(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        return -1;
+    }
+
+    Node *aux = f->inicio;
+    int maior = f->inicio->valor;
+
+    while(aux != NULL){
+        if(aux->valor > maior){
+            maior = aux->valor;
+        }
+        aux = aux->prox;
+    }
+
+    return maior;
+}
+
 int main(void) {
     Fila f;
     iniciailiza(&f);
@@ -115,9 +179,15 @@ int main(void) {
         printf("1 - Enfileirar (ENQUEUE)\n");
         printf("2 - Desenfileirar (DEQUEUE)\n");
         printf("3 - Exibir fila\n");
-        printf("4 - Libera fila\n");
+        printf("4 - Liberar fila\n");
+        printf("5 - Ver início da fila\n");
+        printf("6 - Ver fim da fila\n");
+        printf("7 - Contar elementos\n");
+        printf("8 - Somar elementos\n");
+        printf("9 - Maior elemento\n");
         printf("0 - Sair\n");
-        printf("Escolha uma opcao: ");
+        printf("==========================================\n");
+        printf("Escolha uma opção: ");
         scanf("%d", &opcao);
         printf("\n");
 
@@ -127,24 +197,59 @@ int main(void) {
                 scanf("%d", &valor);
                 enqueue(&f, valor);
                 break;
+
             case 2:
                 dequeue(&f);
                 break;
+
             case 3:
                 exibir(&f);
                 break;
+
             case 4:
                 libera(&f);
                 break;
-            case 0:
-                printf("Encerrando programa\n");
+
+            case 5:
+                valor = ver_inicio(&f);
+                if (valor != -1)
+                    printf("Início da fila: %d\n", valor);
                 break;
+
+            case 6:
+                valor = ver_fim(&f);
+                if (valor != -1)
+                    printf("Fim da fila: %d\n", valor);
+                break;
+
+            case 7:
+                valor = count_elementos(&f);
+                if (valor != -1)
+                    printf("Quantidade de elementos: %d\n", valor);
+                break;
+
+            case 8:
+                valor = soma_elementos(&f);
+                if (valor != -1)
+                    printf("Soma dos elementos: %d\n", valor);
+                break;
+
+            case 9:
+                valor = maior(&f);
+                if (valor != -1)
+                    printf("Maior elemento: %d\n", valor);
+                break;
+
+            case 0:
+                printf("Encerrando programa...\n");
+                break;
+
             default:
-                printf("Opcao invalida\n");
+                printf("Opção inválida!\n");
         }
 
     } while (opcao != 0);
 
-    libera(&f);
+    libera(&f); 
     return 0;
 }
