@@ -86,6 +86,62 @@ void libera(Pilha *p) {
     p->tam = 0;
 }
 
+int ver_topo(Pilha *p){
+    if(p->topo == NULL){
+        printf("Pilha vazia.\n");
+        return -1;
+    }else{
+        printf("Valor do topo: %d", p->topo->valor);
+        return p->topo->valor;
+    }
+}
+
+int count_elementos_pilha(Pilha *p){
+    return p->tam;
+}
+
+int soma(Pilha *p){
+    int soma = 0;
+    Node *aux = p->topo;
+
+    while(aux != NULL){
+        soma+= aux->valor;
+        aux = aux->prox;
+    }
+
+    return soma;
+}
+
+int maior(Pilha *p){
+    if (p->topo == NULL) return 0;
+    int maior = p->topo->valor;
+    Node *aux = p->topo;
+
+    while(aux != NULL){
+        if(aux->valor > maior){
+            maior = aux->valor;
+        }
+        aux = aux->prox;
+    }
+
+    return maior;
+}
+
+int menor(Pilha *p){
+    if (p->topo == NULL) return 0;
+    int menor = p->topo->valor;
+    Node *aux = p->topo;
+
+    while(aux != NULL){
+        if(aux->valor < menor){
+            menor = aux->valor;
+        }
+        aux = aux->prox;
+    }
+
+    return menor;
+}
+
 int main(void)
 {
     Pilha p;
