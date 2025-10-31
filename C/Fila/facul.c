@@ -168,6 +168,25 @@ int maior(Fila *f){
     return maior;
 }
 
+int menor(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        return -1;
+    }
+
+    Node *aux = f->inicio;
+    int menor = f->inicio->valor;
+
+    while(aux != NULL){
+        if(aux->valor < menor){
+            menor = aux->valor;
+        }
+        aux = aux->prox;
+    }
+
+    return menor;
+}
+
 int main(void) {
     Fila f;
     iniciailiza(&f);
@@ -185,6 +204,7 @@ int main(void) {
         printf("7 - Contar elementos\n");
         printf("8 - Somar elementos\n");
         printf("9 - Maior elemento\n");
+        printf("10 - menor elemento\n");
         printf("0 - Sair\n");
         printf("==========================================\n");
         printf("Escolha uma opção: ");
@@ -238,6 +258,12 @@ int main(void) {
                 valor = maior(&f);
                 if (valor != -1)
                     printf("Maior elemento: %d\n", valor);
+                break;
+
+            case 10:
+                valor = menor(&f);
+                if (valor != -1)
+                    printf("Menor elemento: %d\n", valor);
                 break;
 
             case 0:
