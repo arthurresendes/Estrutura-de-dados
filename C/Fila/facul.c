@@ -26,7 +26,7 @@ int vazia(Fila *f){
     return  f->inicio == NULL;
 }
 
-void enqueue(int num,Fila *f){
+void enqueue(Fila *f,int num){
     Node *novo = malloc(sizeof(Node));
 
     if(!novo){
@@ -34,6 +34,7 @@ void enqueue(int num,Fila *f){
     }
 
     novo->valor = num;
+    novo->prox = NULL;
     
     if(vazia(f)){
         f->inicio = novo;
@@ -42,7 +43,7 @@ void enqueue(int num,Fila *f){
         f->fim->prox = novo;
         f->fim = novo;
     }
-    f->tam--;
+    f->tam++;
     printf("Elemento %d enfileirado com sucesso!\n", num);
 }
 
@@ -70,7 +71,7 @@ int dequeue(Fila *f){
 void exibir(Fila *f){
     if(vazia(f)){
         printf("Fila vazia");
-        exit(2);
+        return;
     }
 
 
@@ -84,9 +85,28 @@ void exibir(Fila *f){
     printf("------------------------------------\n\n");
 }
 
+void libera(Fila *f){
+    if(vazia(f)){
+        printf("Fila vazia");
+        exit(2);
+    }
+
+    Node *aux = f->inicio;
+    Node *next;
+    while(aux != NULL){
+        next = aux->prox;
+        free(aux);
+        aux = next;
+    }
+
+    f->inicio = NULL;
+    f->fim = NULL;
+    f->tam = 0;
+}
+
 int main(void) {
     Fila f;
-    inicializa(&f);
+    iniciailiza(&f);
 
     int opcao, valor;
 
@@ -95,6 +115,7 @@ int main(void) {
         printf("1 - Enfileirar (ENQUEUE)\n");
         printf("2 - Desenfileirar (DEQUEUE)\n");
         printf("3 - Exibir fila\n");
+        printf("4 - Libera fila\n");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -110,7 +131,10 @@ int main(void) {
                 dequeue(&f);
                 break;
             case 3:
-                exibe(&f);
+                exibir(&f);
+                break;
+            case 4:
+                libera(&f);
                 break;
             case 0:
                 printf("Encerrando programa\n");
