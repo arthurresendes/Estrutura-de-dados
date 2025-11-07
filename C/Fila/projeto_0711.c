@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-typedef struct No{
+typedef struct Node{
     int numero;
-    char nome_cliente[100];
+    char pedido[100];
     struct No *prox;
-}No;
+}Node;
 
 typedef struct Fila{
-    No *inicio;
-    No *fim;
+    Node *inicio;
+    Node *fim;
     int tam;
 }Fila;
 
@@ -19,6 +20,31 @@ void inicializa(Fila *f){
     f->tam = 0;
 };
 
+int vazio(Fila *f){
+    return f->inicio==NULL;
+}
+
+void enqueue(Fila *f, int num, char pe[100]){
+    Node *novo = malloc(sizeof(Node));
+
+    if(!novo){
+        exit(1);
+    }
+
+    novo->numero = num;
+    strcpy(novo->pedido, pe);
+
+    if(vazio(f)){
+        f->inicio = novo;
+        f->fim = novo;
+    }else{
+        f->fim->prox = novo;
+        f->fim = novo;
+    }
+
+    f->tam++;
+    printf("Elemento %d enfileirado com sucesso!\n", num);
+}
 
 int main(){
     Fila f;
