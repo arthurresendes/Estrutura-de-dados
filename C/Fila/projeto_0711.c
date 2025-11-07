@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Trabalho Restaurante , numero do chamado + pedido. Arthur Resende Gomes e Arthur Silva Rodrigues
+
 typedef struct Node{
     int numero;
     char pedido[100];
@@ -22,28 +24,6 @@ void inicializa(Fila *f){
 
 int vazio(Fila *f){
     return f->inicio==NULL;
-}
-
-void enqueue(Fila *f, int num, char pe[100]){
-    Node *novo = malloc(sizeof(Node));
-
-    if(!novo){
-        exit(1);
-    }
-
-    novo->numero = num;
-    strcpy(novo->pedido, pe);
-
-    if(vazio(f)){
-        f->inicio = novo;
-        f->fim = novo;
-    }else{
-        f->fim->prox = novo;
-        f->fim = novo;
-    }
-
-    f->tam++;
-    printf("Elemento %d enfileirado com sucesso!\n", num);
 }
 
 int main(){
