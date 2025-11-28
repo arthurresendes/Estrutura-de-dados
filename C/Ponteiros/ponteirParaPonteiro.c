@@ -15,8 +15,8 @@ int main(){
     *ptrx = 20;
     printf("Mudando x de valor para 20\n");
     printf("%d\n", x);
-    printf("Valor endreçado de %x\n" , &ptrx);
-    printf("Valor endreçado de x %x\n" , ptrx);
+    printf("Valor endreçado de %d\n" , &ptrx);
+    printf("Valor endreçado de x %d\n" , *ptrx);
     printf("%d\n", **pptrx);
     printf("Mudando de valor por meio de **pptrx\n");
     **pptrx = 30;
