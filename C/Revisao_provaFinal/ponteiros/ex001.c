@@ -22,5 +22,10 @@ int main(){
     printf("Valor de x por ponteiro do ponteiro: %d\n", **pptr);
 
 
+    // Ponteiros com vetor
+    int v[] = {5, 10, 15, 3, 10, 76, 5, 13, 33, 45};
+    int *pt;
+    pt = v;
+    printf("%d\n", *(pt + 0));
     return 0;
 }
