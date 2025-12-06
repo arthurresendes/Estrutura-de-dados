@@ -23,7 +23,4 @@ Os arquivos estão organizados para facilitar o seu estudo dos principais concei
 
 ---
 
-
----
-
-**Ideal para estudantes que desejam dominar a base das estruturas de dados com exemplos claros e objetivos!**
+**Ideal para todos estudantes para saber como manipular uma sequencia de comandos!**
